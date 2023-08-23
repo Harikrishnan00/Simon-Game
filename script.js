@@ -51,7 +51,12 @@ let userInput = [];
 let levelCount = 0; 
 let ifGameStarted = false; //To handle the unwanted mouse click
 
-window.addEventListener("keypress", main);
+window.addEventListener("keypress",()=>{
+  if(!ifGameStarted){
+    console.log(ifGameStarted)
+    main()
+  }
+} );
 
 // Adding Click events to elements
 elementAndAudio.forEach(([element, audio]) => {
@@ -84,6 +89,7 @@ function main() {
 function startGame() {
   if (levelCount === 4) {
     changeLevelTitle("You Win Press Any Key To Restart");
+    ifGameStarted = false;
   } else {
     changeLevelTitle(levelTitles[levelCount]);
     handleRipppleAnimation(levelPatters[levelCount]);
